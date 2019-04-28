@@ -17,11 +17,11 @@ I wanted to understand what was going on with my car after it threw a check-engi
 How does it work?
 -----------------
 
-All modern cars are equipped with on-board diagnostics systems (ODB). These ODB systems provide owners and mechanics with access to information from the car's internal computers. Since the mid-90's all new cars are equipped with the latest ODB standard, called ODB-II, which provide us with various information on the car's inner workings.
+All modern cars are equipped with on-board diagnostics systems (OBD). These OBD systems provide owners and mechanics with access to information from the car's internal computers. Since the mid-90's all new cars are equipped with the latest OBD standard, called OBD-II, which provide us with various information on the car's inner workings.
 
-Among other things, mechanics rely on information from the ODB-II system to diagnose check-engine lights and other issues. To analyze the car's data, an ODB-II scanner tool can be used to connect to the car's ODB-II port. This port is typically located below the steering column of the car. Nowadays, tools come in many forms, including Wireless ODB-II adapters which can plug-in to the ODB-II port and transmit information via Bluetooth or Wi-Fi to your Android Phone or other device.
+Among other things, mechanics rely on information from the OBD-II system to diagnose check-engine lights and other issues. To analyze the car's data, an OBD-II scanner tool can be used to connect to the car's OBD-II port. This port is typically located below the steering column of the car. Nowadays, tools come in many forms, including Wireless OBD-II adapters which can plug-in to the OBD-II port and transmit information via Bluetooth or Wi-Fi to your Android Phone or other device.
 
-I use a Bluetooth capable ODBII adapter to transmit information from my car. I receive this information using my Android phone and an app called Torque. The Torque app's settings are highly configurable - I have enabled logging so that any information collected are saved as time-stamped .csv files in a specific folder.
+I use a Bluetooth capable OBDII adapter to transmit information from my car. I receive this information using my Android phone and an app called Torque. The Torque app's settings are highly configurable - I have enabled logging so that any information collected are saved as time-stamped .csv files in a specific folder.
 
 I use a second app called DriveSync (Drive as in Google Drive/OneDrive) to automatically upload any .csv files from my Torque App's log folder to my Google Drive.
 
@@ -33,7 +33,7 @@ These scripts are for anyone interested in playing around with their own car's d
 What is the goal of this project?
 ---------------------------------
 
-The goal of this project is to show others how they can learn more about car data with ODBII, Torque, and R. It's a great way to use data for diagnostics and performance improvement.
+The goal of this project is to show others how they can learn more about car data with OBDII, Torque, and R. It's a great way to use data for diagnostics and performance improvement.
 
 Example: Visualize car data
 ===========================
@@ -150,7 +150,7 @@ trip2 <-
      trp_lp100k="Trip average Litres/100 KM(l/100km)",
      
      controlmod_v="Voltage (Control Module)(V)",
-     odb2_v="Voltage (OBD Adapter)(V)"
+     obd2_v="Voltage (OBD Adapter)(V)"
     ) %>% 
   mutate(
     # Convert time column into POSIXct type

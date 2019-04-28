@@ -18,14 +18,14 @@ grViz("digraph {
   # define the global styles of the nodes. We can override these in box if we wish
   node [shape = Rounded, style = filled, fillcolor = Linen]
   car [label = 'Car sensor data', shape = Rounded, fillcolor = LightBlue1]
-  odb [label = 'Car ODBII port', shape = Rounded, fillcolor = LightBlue2]
+  OBD [label = 'Car OBDII port', shape = Rounded, fillcolor = LightBlue2]
   torque [label = 'Torque Android app', shape = Rounded, fillcolor = LightBlue3]
   google [label = 'Google Drive', shape = Rounded, fillcolor = LightBlue4]
   r [label = 'R', shape = Rounded, fillcolor = DeepSkyBlue]
   
   # edge definitions with the node IDs
-  car -> odb
-  odb -> torque [label = 'Bluetooth ODBII Adapter']
+  car -> OBD
+  OBD -> torque [label = 'Bluetooth OBDII Adapter']
   torque -> google [label = 'Auto-sync w/ DriveSync Android app'] 
   google -> r -> google
   }")
@@ -42,11 +42,11 @@ grViz("digraph {
 
 ## How does it work?
 
-  All modern cars are equipped with on-board diagnostics systems (ODB). These ODB systems provide owners and mechanics with access to information from the car's internal computers. Since the mid-90's all new cars are equipped with the latest ODB standard, called ODB-II, which provide us with various information on the car's inner workings.
+  All modern cars are equipped with on-board diagnostics systems (OBD). These OBD systems provide owners and mechanics with access to information from the car's internal computers. Since the mid-90's all new cars are equipped with the latest OBD standard, called OBD-II, which provide us with various information on the car's inner workings.
   
-  Among other things, mechanics rely on information from the ODB-II system to diagnose check-engine lights and other issues. To analyze the car's data, an ODB-II scanner tool can be used to connect to the car's ODB-II port. This port is typically located below the steering column of the car. Nowadays, tools come in many forms, including Wireless ODB-II adapters which can plug-in to the ODB-II port and transmit information via Bluetooth or Wi-Fi to your Android Phone or other device.
+  Among other things, mechanics rely on information from the OBD-II system to diagnose check-engine lights and other issues. To analyze the car's data, an OBD-II scanner tool can be used to connect to the car's OBD-II port. This port is typically located below the steering column of the car. Nowadays, tools come in many forms, including Wireless OBD-II adapters which can plug-in to the OBD-II port and transmit information via Bluetooth or Wi-Fi to your Android Phone or other device.
 
-  I use a Bluetooth capable ODBII adapter to transmit information from my car. I receive this information using my Android phone and an app called Torque. The Torque app's settings are highly configurable - I have enabled logging so that any information collected are saved as time-stamped .csv files in a specific folder.
+  I use a Bluetooth capable OBDII adapter to transmit information from my car. I receive this information using my Android phone and an app called Torque. The Torque app's settings are highly configurable - I have enabled logging so that any information collected are saved as time-stamped .csv files in a specific folder.
 
   I use a second app called DriveSync (Drive as in Google Drive/OneDrive) to automatically upload any .csv files from my Torque App's log folder to my Google Drive.
 
@@ -56,4 +56,4 @@ grViz("digraph {
   
 ## What is the goal of this project?
 
-  The goal of this project is to show others how they can learn more about car data with ODBII, Torque, and R. It's a great way to use data for diagnostics and performance improvement.
+  The goal of this project is to show others how they can learn more about car data with OBDII, Torque, and R. It's a great way to use data for diagnostics and performance improvement.

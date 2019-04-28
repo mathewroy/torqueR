@@ -108,7 +108,7 @@ trip2 <-
      trp_lp100k="Trip average Litres/100 KM(l/100km)",
      
      controlmod_v="Voltage (Control Module)(V)",
-     odb2_v="Voltage (OBD Adapter)(V)"
+     obd2_v="Voltage (OBD Adapter)(V)"
     ) %>% 
   mutate(
     # Convert time column into POSIXct type
