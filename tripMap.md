@@ -1,0 +1,79 @@
+torqueR: map my trip
+================
+
+Install & load packages
+-----------------------
+
+You need to install the following packages. Remove the hash tag to install.
+
+``` r
+# install.packages("dplyr")
+# install.packages("ggplot2")
+# install.packages("ggmap")
+
+## Load required packages
+lapply(c("dplyr","ggplot2","ggmap"), require, character.only = TRUE)
+```
+
+Load existing dataset with trip data
+------------------------------------
+
+Follow the example provided in [createPlots.md](createPlots.md) to create the *trip2* data frame.
+We will modify it here and create a new data frame, *trip3*. The new data frame will contain a column, tripcut\_1min, that contains values for the trip hour and minute broken down at 1-minute intervals.
+
+``` r
+trip3 <- trip2 %>% 
+  mutate(timecut_1min = cut(time, 
+                            breaks = "1 min", 
+                            labels = unique(substr(time, 12, 16)))) %>% 
+  select(time, timecut_1min, everything(),-timecut)
+```
+
+To get ggmap package to work, you must register with Google prior-to use and get an API key. For instructions on how to do this, see [here](https://github.com/dkahle/ggmap). Once you get an API key, you must register it using R, like so:
+
+``` r
+register_google(key = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", write = TRUE)
+```
+
+Now, we can set the parameters for the ggmap::get\_map function. There are three way to set the map's area. You can use an address of interest, use a longitude and latitude coordinate, or use the make\_bbox function to create a boundary box surrounding a longitude and latitude coordinate.
+
+``` r
+# 1: 
+address <- "3100 Howard Ave, Windsor, ON N8X 3Y8"
+# 2: 
+longlat <- c(lon = -83.00399, lat = 42.27486)
+# 3:
+boundingbox <- make_bbox(lon = longlat["lon"],lat = longlat["lat"], f=0.05)
+```
+
+Any of these three objects can be provided to the get\_map function's location parameter. We'll use the address object as a parameter for this example. The source will be set to "google" to acquire maps from Google. I'm also setting the zoom to "13". A zoom value closer to 20 will produce a very close-up map, and closer to 5 will produce a value that's zoomed out. The resulting object will be a ggmap object.
+
+``` r
+map <- ggmap::get_map(
+  location = address,
+  source ="google",
+  maptype = "terrain",
+  crop = "false",
+  zoom = 13)
+```
+
+Plot the map
+------------
+
+Add other plot data on top using ggplot. For this example, I'm simply mapping the route of my trip. I'm using the recently created time column to identify where I was at various points in time. You can modify the colour parameter from time, to any other suitable column in the data frame. The final map:
+
+``` r
+ggmap(map) + 
+  geom_point(data = trip3, aes(x = long,y = lat)) +
+  geom_path(data = trip3, aes(x = long,y = lat, colour = timecut_1min), size = 1, lineend = "round") +
+  labs(color='Trip time')
+```
+
+![](C:/Users/User/Documents/torqueR/images/trip_map1.png)
+
+For more on the *ggmap* package and its functions, see:
+
+``` r
+D. Kahle and H. Wickham. ggmap: Spatial Visualization with ggplot2. The R Journal, 5(1),
+  144-161. URL http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf
+```
