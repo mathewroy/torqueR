@@ -68,7 +68,7 @@ ggmap(map) +
   geom_path(data = trip3, aes(x = long,y = lat, colour = timecut_1min), size = 1, lineend = "round") +
   labs(color='Trip time')
 ```
-![](C:/Users/User/Documents/torqueR/images/trip_map1.png)
+![](/images/trip_map1.png)
 
 For more on the *ggmap* package and its functions, see:
 ```{r citation, eval=FALSE,echo=TRUE,message=FALSE,warning=FALSE,results="hide"}

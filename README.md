@@ -293,7 +293,7 @@ ggmap(map) +
   labs(color='Trip time')
 ```
 
-![](C:/Users/User/Documents/torqueR/images/trip_map1.png)
+![](/images/trip_map1.png)
 
 For more on the *ggmap* package and its functions, see:
 
