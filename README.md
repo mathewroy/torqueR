@@ -1,3 +1,6 @@
+Update as of January 19, 2023:
+When I wrote this script in early 2019, it was a useful exercise to help me develop my R skillset. One thing to note with this example below: the ggmap package's use of the Google API will no longer work as expected, because the use of Google's API is no longer free. 
+
 torqueR
 ================
 Mathew Roy  
